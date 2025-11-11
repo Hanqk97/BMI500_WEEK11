@@ -46,31 +46,42 @@ The notebook includes:
 ## Comparative Model Performance
 
 - **SIR (β=0.0003, γ=0.1, S0=999, I0=1, R0=0; 0–150 days):**  
+  ![B](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/b.png)
   Single wave. **I(t)** rises fast and then decays. No exposed stage and no μ, so once susceptibles drop and recoveries win, the curve does not come back.  
   *Plot:* see **HW11.ipynb → Part B SIR plot**  
 
-- **SEIR (β=0.0003, γ=0.1, σ=0.2, μ=0.01, S0=990, E0=9, I0=1, R0=0; 0–365 days):**  
+- **SEIR (β=0.0003, γ=0.1, σ=0.2, μ=0.01, S0=990, E0=9, I0=1, R0=0; 0–365 days):** 
+  ![Dii_365](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/Dii_365.png) 
   First big peak, then a smaller bump. The **E→I delay (σ)** pushes the peak **later** than SIR. With **μ>0**, births add back **S**, so a second rise appears.  
   *Plot:* see **HW11.ipynb → D(ii) 365-day SEIR plot**  
 
 - **SEIR long run (same params; 0–1200 days):**  
+  ![Dii_1200](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/Dii_1200.png) 
   Damped oscillations. Peaks get smaller and settle to a low level (endemic-like). This behavior does not show up in the 150-day SIR run because SIR has no E and no μ.  
   *Plot:* see **HW11.ipynb → D(ii) 1200-day SEIR plot**  
 
-- **Sensitivity (E(i) lines & E(ii) 20-bar charts):**  
+- **Sensitivity (E(i) lines & E(ii) 20-bar charts):**
+  ![ei_beta](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/Ei_beta.png) 
+  ![ei_gamma](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/Ei_gamma.png) 
+  ![eiii_peak](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/eiii_peak.png) 
+  ![eiii_total](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/eiii_total.png)  
   Increasing **β** makes peaks **higher** and **earlier**; increasing **γ** makes peaks **lower** (and typically earlier) and reduces **total infections**. This trend is consistent in both models, but the **magnitude** and **timing** differ because SEIR has the latent stage (σ) and demographics (μ).  
   *Plots:* see **HW11.ipynb → E(i) β-sweep & γ-sweep** and **E(ii) 20-column bar plots (peak + total)**  
 
 **Difference:** SIR (no E, μ=0) gives a single, earlier peak over a short horizon (0–150 d). SEIR (with E and μ) shifts the peak later (σ delay) and can show extra waves (μ replenishes S). Over a full year and beyond, SEIR matches the “spread then settle” pattern seen in the long-horizon plots.
+
 ---
 
 ## Relevance to Model-Based Machine Learning
 
-This exercise shows how **mechanistic modeling** (SIR/SEIR differential equations) and **data-driven parameter tuning** connect to model-based ML:
+This work connects simple epidemic models with ideas in model-based machine learning. Both SIR and SEIR describe how the system changes based on a few clear parameters — **β**, **γ**, **σ**, and **μ**. These parameters are not hidden weights like in black-box ML models but have direct meaning: infection rate, recovery rate, incubation rate, and population change.  
 
-- The ODE parameters (β, γ, σ, μ) are interpretable **model parameters** rather than black-box weights.  
-- Simulation results can serve as **priors or constraints** for hybrid ML systems (e.g., Bayesian epidemic forecasting, RL for intervention policies).  
-- Sensitivity analysis demonstrates **explainable parameter influence**, aligning with ML interpretability goals.
+In model-based ML, we often start from a known rule and then adjust parameters to match data. Here, the ODE models already give the rule (how S, E, I, R interact), and changing the parameters is like learning how the system behaves under different conditions.  
+The **RK45 solver** runs this rule step by step, similar to how a model-based agent would simulate future states.  
+
+The parameter sensitivity we did in **E(i–ii)** shows the same idea as interpretability in ML — we can see exactly how changing β or γ changes the output curve. That makes the model explainable and closer to how model-based ML tries to use structure instead of pure data fitting.  
+
+For improvement, future work could make β or γ change with time or policy (β(t), γ(t)) and fit them with data. That would let the system learn from data but still keep the clear structure of the model.
 
 ---
 
@@ -88,25 +99,13 @@ Each of these would connect the classical model with data-driven adaptation — 
 
 ## AI Tool Disclosure
 
-Generative AI (ChatGPT) was used **only** for specific technical assistance, not for producing final numerical outputs.
+Generative AI (ChatGPT-5) was used to complete part of A and E(iii).
 
 **Prompts used:**
 
 1. Prompt 1: “Which ODE solver (Euler or Runge–Kutta) gives better stability and accuracy for SIR equations, and can you show how to implement it in Python?”  
+Result attached in `ai_disclousre/prompt1.pdf` or also can use this repeat:https://chatgpt.com/share/6912b58b-8f3c-8001-8fbc-a29a9404831e
 
-
-2. Prompt 2: “How to generate a colorful Matplotlib bar plot (20 columns) with labeled values on top for each (β, γ) pair.”  
-   *(Result: used `plt.cm.tab20` color palette and value annotations above each bar.)*
-
-All code and explanations were verified, rewritten, and executed manually in the notebook.
-
-**Disclaimer:**  
-> Generative AI (ChatGPT) was used to assist in code formatting, visualization, and solver selection discussion.  
-> All model logic, parameter tuning, execution, and interpretation were conducted independently by Hanqi Chen.
-
+2. Prompt 2: “How to generate a colorful Matplotlib bar plot (20 columns) with labeled values on top for each (β, γ) pair from SEIR model.”  
+Result attached in `ai_disclousre/prompt2.pdf` or also can use this repeat:https://chatgpt.com/share/6912bee9-0f40-8001-a112-3fbc2664f230
 ---
-
-## Environment Setup
-
-### 1. Requirements
-Create a file named **`requirements.txt`** in your environment:
