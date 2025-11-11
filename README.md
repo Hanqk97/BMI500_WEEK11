@@ -85,27 +85,31 @@ For improvement, future work could make β or γ change with time or policy (β(
 
 ---
 
-## Suggestions for Future Modeling Improvements (Novelty Ideas)
+## Suggestions for Future Modeling Improvements 
 
-To extend novelty beyond the baseline assignment:
-- **Parameter Estimation via ML:** Fit β, γ, σ, μ using gradient-based or probabilistic learning from real case data.  
-- **Uncertainty Modeling:** Add stochastic noise to represent reporting delays or random contacts.  
-- **Adaptive β(t):** Model β as a function of mobility or policy strength, learnable through regression or RL.  
-- **Comparative Learning:** Train a simple neural network on synthetic SEIR data to approximate I(t) and compare predictive generalization.
+![nov_beta](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/nov_beta.png) 
+![nov_365](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/nov_365.png)
 
-Each of these would connect the classical model with data-driven adaptation — a core concept in model-based ML.
+Since the beta in above model is constant, but during the whole year the social distance may changed fro perople due to the season change will change the temperal that may increase or decresat their distance, to further close to ther real world result, do a ***novleyt*** test that add a only the transmission rate was changed to a seasonal form, β(t) = β · (1 + 0.2·sin(2πt/365)), and everything else stayed the same as in the question. The result shows a higher and slightly earlier first peak with seasonal β (I_max = 206.86 at t = 57.0 d) compared to the constant-β run (I_max = 179.46 at t = 60.3 d), while the yearly total infections became smaller with seasonality (2588.20 vs 2673.54). The plots match this story: early in the year β(t) is above baseline so the first surge is stronger, and later β(t) drops below baseline so the tail is weaker.
+
+To further improve the model, a simple next step would be adding a **vaccination flow** from S to R with a small constant rate v. This addition would show how continuous immunization lowers both the peak and total infections while keeping the model structure almost unchanged.  
+Another easy extension would be including a **policy change on β**, where β decreases suddenly at a given day to represent the start of interventions like lockdowns or mask mandates. This case can be compared to the baseline to show how timing and strength of policy affect epidemic size.  
+Finally, adding a small **random variation on β(t)** could represent uncertainty in contact behavior and create a visible spread of outcomes, closer to real-world data.  
+These extensions would make the model more flexible and realistic while staying simple enough for clear explanation and grading.
 
 ---
 
 ## AI Tool Disclosure
 
-Generative AI (ChatGPT-5) was used to complete part of A and E(iii).
+Generative AI (ChatGPT) was used to complete parts **A** and **E(iii)**.
 
 **Prompts used:**
 
-1. Prompt 1: “Which ODE solver (Euler or Runge–Kutta) gives better stability and accuracy for SIR equations, and can you show how to implement it in Python?”  
-Result attached in `ai_disclousre/prompt1.pdf` or also can use this repeat:https://chatgpt.com/share/6912b58b-8f3c-8001-8fbc-a29a9404831e
+1. **Prompt 1:** “Which ODE solver (Euler or Runge–Kutta) gives better stability and accuracy for SIR equations, and can you show how to implement it in Python?”  
+   **Result:** attached in `ai_disclosure/prompt1.pdf`, or view the share link:  
+   https://chatgpt.com/share/6912b58b-8f3c-8001-8fbc-a29a9404831e
 
-2. Prompt 2: “How to generate a colorful Matplotlib bar plot (20 columns) with labeled values on top for each (β, γ) pair from SEIR model.”  
-Result attached in `ai_disclousre/prompt2.pdf` or also can use this repeat:https://chatgpt.com/share/6912bee9-0f40-8001-a112-3fbc2664f230
+2. **Prompt 2:** “How to generate a colorful Matplotlib bar plot (20 columns) with labeled values on top for each (β, γ) pair from the SEIR model?”  
+   **Result:** attached in `ai_disclosure/prompt2.pdf`, or view the share link:  
+   https://chatgpt.com/share/6912bee9-0f40-8001-a112-3fbc2664f230
 ---
