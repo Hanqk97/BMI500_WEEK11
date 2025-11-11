@@ -2,7 +2,7 @@
 
 **Author:** Hanqi Chen  
 **Email:** [hchen54@emory.edu](mailto:hchen54@emory.edu)  
-**Selected Question:** HW 1: SIR and SEIR Model Implementation for Pandemic Spread 
+**Selected Question:** HW 1: SIR and SEIR Model Implementation for Pandemic Spread<br>
 **Repository:** [BMI500_WEEK11](https://github.com/Hanqk97/BMI500_WEEK11)  
 **Notebook:** [HW11.ipynb](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/HW11.ipynb)
 
