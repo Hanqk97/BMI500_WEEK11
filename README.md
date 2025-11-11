@@ -76,8 +76,7 @@ The notebook includes:
 
 This work connects simple epidemic models with ideas in model-based machine learning. Both SIR and SEIR describe how the system changes based on a few clear parameters — **β**, **γ**, **σ**, and **μ**. These parameters are not hidden weights like in black-box ML models but have direct meaning: infection rate, recovery rate, incubation rate, and population change.  
 
-In model-based ML, we often start from a known rule and then adjust parameters to match data. Here, the ODE models already give the rule (how S, E, I, R interact), and changing the parameters is like learning how the system behaves under different conditions.  
-The **RK45 solver** runs this rule step by step, similar to how a model-based agent would simulate future states.  
+In model-based ML, we often start from a known rule and then adjust parameters to match data. Here, the ODE models already give the rule (how S, E, I, R interact), and changing the parameters is like learning how the system behaves under different conditions. The **RK45 solver** runs this rule step by step, similar to how a model-based agent would simulate future states.  
 
 The parameter sensitivity we did in **E(i–ii)** shows the same idea as interpretability in ML — we can see exactly how changing β or γ changes the output curve. That makes the model explainable and closer to how model-based ML tries to use structure instead of pure data fitting.  
 
