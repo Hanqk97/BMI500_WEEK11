@@ -46,17 +46,17 @@ The notebook includes:
 ## Comparative Model Performance
 
 - **SIR (β=0.0003, γ=0.1, S0=999, I0=1, R0=0; 0–150 days):**  
-  ![B](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/b.png)
+  ![B](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/b.png)<br>
   Single wave. **I(t)** rises fast and then decays. No exposed stage and no μ, so once susceptibles drop and recoveries win, the curve does not come back.  
   *Plot:* see **HW11.ipynb → Part B SIR plot**  
 
 - **SEIR (β=0.0003, γ=0.1, σ=0.2, μ=0.01, S0=990, E0=9, I0=1, R0=0; 0–365 days):** 
-  ![Dii_365](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/Dii_365.png) 
+  ![Dii_365](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/Dii_365.png)<br>
   First big peak, then a smaller bump. The **E→I delay (σ)** pushes the peak **later** than SIR. With **μ>0**, births add back **S**, so a second rise appears.  
   *Plot:* see **HW11.ipynb → D(ii) 365-day SEIR plot**  
 
 - **SEIR long run (same params; 0–1200 days):**  
-  ![Dii_1200](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/Dii_1200.png) 
+  ![Dii_1200](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/Dii_1200.png)<br> 
   Damped oscillations. Peaks get smaller and settle to a low level (endemic-like). This behavior does not show up in the 150-day SIR run because SIR has no E and no μ.  
   *Plot:* see **HW11.ipynb → D(ii) 1200-day SEIR plot**  
 
@@ -64,7 +64,7 @@ The notebook includes:
   ![ei_beta](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/Ei_beta.png) 
   ![ei_gamma](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/Ei_gamma.png) 
   ![eiii_peak](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/eiii_peak.png) 
-  ![eiii_total](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/eiii_total.png)  
+  ![eiii_total](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/eiii_total.png)<br>  
   Increasing **β** makes peaks **higher** and **earlier**; increasing **γ** makes peaks **lower** (and typically earlier) and reduces **total infections**. This trend is consistent in both models, but the **magnitude** and **timing** differ because SEIR has the latent stage (σ) and demographics (μ).  
   *Plots:* see **HW11.ipynb → E(i) β-sweep & γ-sweep** and **E(ii) 20-column bar plots (peak + total)**  
 
@@ -88,7 +88,7 @@ For improvement, future work could make β or γ change with time or policy (β(
 ## Suggestions for Future Modeling Improvements 
 
 ![nov_beta](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/nov_beta.png) 
-![nov_365](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/nov_365.png)
+![nov_365](https://github.com/Hanqk97/BMI500_WEEK11/blob/main/plots/nov_365.png)<br>
 
 Since the beta in above model is constant, but during the whole year the social distance may changed fro perople due to the season change will change the temperal that may increase or decresat their distance, to further close to ther real world result, do a ***novleyt*** test that add a only the transmission rate was changed to a seasonal form, β(t) = β · (1 + 0.2·sin(2πt/365)), and everything else stayed the same as in the question. The result shows a higher and slightly earlier first peak with seasonal β (I_max = 206.86 at t = 57.0 d) compared to the constant-β run (I_max = 179.46 at t = 60.3 d), while the yearly total infections became smaller with seasonality (2588.20 vs 2673.54). The plots match this story: early in the year β(t) is above baseline so the first surge is stronger, and later β(t) drops below baseline so the tail is weaker.
 
